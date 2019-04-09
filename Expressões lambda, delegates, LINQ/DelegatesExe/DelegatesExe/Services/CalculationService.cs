@@ -1,20 +1,18 @@
-﻿namespace DelegatesExe.Services
-{
-    delegate double BinaryNumericOperation(double n1, double n2);
+﻿using System;
 
+namespace DelegatesExe.Services
+{
     class CalculationService
     {
-        public static double Max(double x, double y)
+        public static void ShowMax(double x, double y)
         {
-            return (x > y) ? x : y;
+            double max = (x > y) ? x : y;
+            Console.WriteLine(max);
         }
-        public static double Sum(double x, double y)
+        public static void ShowSum(double x, double y)
         {
-            return x + y;
-        }
-        public static double Square(double x)
-        {
-            return x * x;
+            double sum = x + y;
+            Console.WriteLine(sum);
         }
     }
 }
