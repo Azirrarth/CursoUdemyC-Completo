@@ -56,7 +56,16 @@ namespace LINQcomLambdaParte1
             Console.WriteLine("First FirstOrDefault teste 1 : " + r6);
 
             var r7 = products.Where(p => p.Price > 3000.0).FirstOrDefault();
-            Console.WriteLine("First FirstOrDefault teste 2 : " + r7); 
+            Console.WriteLine("First FirstOrDefault teste 2 : " + r7);
+            Console.WriteLine();
+
+            var r8 = products.Where(p => p.Id == 3).SingleOrDefault();
+            Console.WriteLine("SINGLE OR DEFAUT TEST 1: " + r8);
+
+            var r9 = products.Where(p => p.Id == 30).SingleOrDefault();
+            Console.WriteLine("SINGLE OR DEFAUT TEST 2: " + r9);
+
+
         }
     }
 }
