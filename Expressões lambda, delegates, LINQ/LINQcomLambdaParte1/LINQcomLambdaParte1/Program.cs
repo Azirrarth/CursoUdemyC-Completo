@@ -35,7 +35,7 @@ namespace LINQcomLambdaParte1
                new Product() { Id = 8, Name = "Priter", Price = 350.0, Category = c3 },
                new Product() { Id = 9, Name = "MacBook", Price = 1800.0, Category = c2 },
                new Product() { Id = 10, Name = "Soud Bar", Price = 700.0, Category = c2 },
-               new Product() { Id = 11, Name = "Level", Price = 1800.0, Category = c1 }
+               new Product() { Id = 11, Name = "Level", Price = 70.0, Category = c1 }
             };
             var r1 = products.Where(p => p.Category.Tier == 1 && p.Price <= 900);
             Print("TIER 1 AND PRICE < 900:", r1);
@@ -43,7 +43,7 @@ namespace LINQcomLambdaParte1
             var r2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
             Print("NAMES OF PRODUCTS FROM TOOLS:", r2);
 
-            var r3 = products.Where(p => p.Name[0] == 'C').Select(p => new {p.Name, p.Price, CategoryName = p.Category.Name});
+            var r3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name });
             Print("NAMES STARTED WITH C AND ANONYMOUS OBJECT:", r3);
 
             var r4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name);
@@ -64,7 +64,37 @@ namespace LINQcomLambdaParte1
 
             var r9 = products.Where(p => p.Id == 30).SingleOrDefault();
             Console.WriteLine("SINGLE OR DEFAUT TEST 2: " + r9);
+            Console.WriteLine();
+            var r10 = products.Max(p => p.Price);
+            Console.WriteLine("Max Price: " + r10);
 
+            var r11 = products.Min(p => p.Price);
+            Console.WriteLine("Min Price: " + r11);
+
+            var r12 = products.Where(p => p.Category.Id == 1).Sum(p => p.Price);
+            Console.WriteLine("Category 1 sum Prices: " + r12);
+
+            var r13 = products.Where(p => p.Category.Id == 1).Average(p => p.Price);
+            Console.WriteLine("Media 1 Average Prices: " + r13);
+
+            var r14 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).DefaultIfEmpty(0.0).Average();
+            Console.WriteLine("Category 5 Average Prices: " + r14);
+
+            var r15 = products.Where(p => p.Category.Id == 1).Select(p => p.Price).Aggregate((x, y) => x + y);
+            Console.WriteLine("Category 1 agregate sum: " + r15);
+
+            Console.WriteLine();
+
+            var r16 = products.GroupBy(p => p.Category);
+            foreach (IGrouping<Category, Product > group in r16)
+            {
+                Console.WriteLine("Category : " + group.Key.Name + " : " );
+                foreach (Product p in group)
+                {
+                    Console.WriteLine(p);
+                }
+                Console.WriteLine();
+            }
 
         }
     }
