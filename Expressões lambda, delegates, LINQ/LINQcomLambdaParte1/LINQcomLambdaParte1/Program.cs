@@ -35,10 +35,13 @@ namespace LINQcomLambdaParte1
                new Product() { Id = 8, Name = "Priter", Price = 350.0, Category = c3 },
                new Product() { Id = 9, Name = "MacBook", Price = 1800.0, Category = c2 },
                new Product() { Id = 10, Name = "Soud Bar", Price = 700.0, Category = c2 },
-               new Product() { Id = 11, Name = "Level", Price = 1800.0, Category = c2 }
+               new Product() { Id = 11, Name = "Level", Price = 1800.0, Category = c1 }
             };
             var r1 = products.Where(p => p.Category.Tier == 1 && p.Price <= 900);
             Print("TIER 1 AND PRICE < 900:", r1);
+
+            var r2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
+            Print("NAMES OF PRODUCTS FROM TOOLS:", r2);
         }
     }
 }
